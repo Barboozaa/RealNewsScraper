@@ -8,6 +8,14 @@ var request = require("request");
 var Note = require("./models/Note");
 var Article = require("./models/Article");
 
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
+// Set mongoose to leverage built in JavaScript ES6 Promises
+// Connect to the Mongo DB
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
+
 var app = express();
 var port = process.env.PORT || 3000;
 
@@ -23,7 +31,7 @@ app.listen(port, function() {
 app.get("/", function(req, res) {
 	Article.find({}, null, {sort: {created: -1}}, function(err, data) {
 		if(data.length === 0) {
-			res.render("placeholder", {message: "There's nothing scraped yet. Please click \"Scrape For Newest Articles\" for fresh and delicious news."});
+			res.render("placeholder", {message: "There's nothing scraped yet. Please click \"Scrape for Newest Articles\" for fresh and delicious news."});
 		}
 		else{
 			res.render("index", {articles: data});

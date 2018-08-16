@@ -17,22 +17,24 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <h2 class="navbar-brand">Real News Scraper</h2>
+        <h2 class="navbar-brand">Real News Scraper™</h2>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#">All Articles</a>
-                <a class="nav-item nav-link" href="#">Saved Articles</a>
-                <a class="nav-item nav-link" href="#">Scrape for Newest Articles</a>
+                <a class="nav-item nav-link" href="/">All Articles</a>
+                <a class="nav-item nav-link" href="/saved">Saved Articles</a>
+                <form action="/scrape" method="GET">
+			        <button type="submit" id="refresh-articles">Scrape For Newest Articles</button>
+		        </form>
             </div>
         </div>
     </nav>
 
-    <div class="jumbotron">
-        <div class="container">
+    <div class="jumbotron col-10 mx-auto">
+        <div class="container jumbotext">
             <h1 class="display-4">Real News, Scraped Fresh</h1>
             <p class="lead">Your One-Stop-Shop for Hot and Fresh Real News</p>
         </div>
