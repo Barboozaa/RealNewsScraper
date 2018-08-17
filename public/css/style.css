@@ -17,3 +17,90 @@ body {
     position: relative;
     top: 5px;
 }
+
+.articles {
+    width: 80%;
+}
+
+.story-body {
+    margin: 30px 0;
+    padding: 20px;
+    background-color: gray
+}
+
+.status, .addnote-button, #add-note, #close-note {
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem
+}
+
+.media {
+    float: left;
+    margin: 10px;
+    width: 210px; 
+    height: 140px
+}
+
+#addnote {
+	display: none;
+	justify-content: center;
+	align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 4;
+}
+
+#note {
+	padding: 0 20px 20px 20px;
+}
+
+#note-displayer {
+	width: 700px;
+	background-color: gray;
+	z-index: 5;
+}
+
+#note-displayer h2 {
+	/* background-color: #3181d3; */
+	color: #fff;
+	padding: 0 20px;
+	margin: 0;
+}
+
+#note-displayer h3 {
+	padding: 0 20px;
+	margin: 0;
+	/* background-color: #93d2f7; */
+	/* color: #3181d3; */
+}
+
+#note-displayer label {
+	color: #aaa;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#note-title {
+	width: 100%;
+	margin: 0 0 10px 0;
+	padding: 5px;
+	font-size: 15px;
+}
+
+#note-body {
+	width: 100%;
+	padding: 5px;
+	font-size: 15px;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}

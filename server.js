@@ -40,25 +40,22 @@ app.get("/", function(req, res) {
 });
 
 app.get("/scrape", function(req, res) {
-	request("https://www.nytimes.com/section/world", function(error, response, html) {
+	request("https://www.clickhole.com/c/news", function(error, response, html) {
 		var $ = cheerio.load(html);
 		var result = {};
-		$("div.story-body").each(function(i, element) {
+		$("div.item__content").each(function(i, element) {
 			var link = $(element).find("a").attr("href");
-			var title = $(element).find("h2.headline").text().trim();
-			var summary = $(element).find("p.summary").text().trim();
-			var img = $(element).parent().find("figure.media").find("img").attr("src");
+			var title = $(element).find("h1.headline").text().trim();
+			var summary = $(element).find("p").text().trim();
+			// var img = $(element).find("img").attr("src");
 			result.link = link;
 			result.title = title;
 			if (summary) {
 				result.summary = summary;
 			};
-			if (img) {
-				result.img = img;
-			}
-			else {
-				result.img = $(element).find(".wide-thumb").find("img").attr("src");
-			};
+			// if (img) {
+			// 	result.img = img;
+			// };
 			var entry = new Article(result);
 			Article.find({title: result.title}, function(err, data) {
 				if (data.length === 0) {
@@ -89,19 +86,6 @@ app.get("/:id", function(req, res) {
 		res.json(data);
 	})
 })
-
-app.post("/search", function(req, res) {
-	console.log(req.body.search);
-	Article.find({$text: {$search: req.body.search, $caseSensitive: false}}, null, {sort: {created: -1}}, function(err, data) {
-		console.log(data);
-		if (data.length === 0) {
-			res.render("placeholder", {message: "Nothing has been found. Please try other keywords."});
-		}
-		else {
-			res.render("search", {search: data})
-		}
-	})
-});
 
 app.post("/save/:id", function(req, res) {
 	Article.findById(req.params.id, function(err, data) {

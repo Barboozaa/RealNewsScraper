@@ -1,5 +1,6 @@
 {{#each articles}}
-<div class="story-body" id={{this._id}}>
+<div class="story-body clearfix" id={{this._id}}>
+{{!-- <img class="media" src="{{this.img}}"> --}}
 <h2>
 <a href="{{this.link}}" target="_blank">{{this.title}}</a>
 <form action="/save/{{this._id}}" method="POST">
@@ -13,6 +14,5 @@
 </form>
 </h2>
 <summary>{{this.summary}}</summary>
-<img class="media" src="{{this.img}}">
 </div>
 {{/each}}
